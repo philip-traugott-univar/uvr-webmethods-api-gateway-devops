@@ -6,26 +6,29 @@ on:
       - master
     tags:
       - v*
-
+  workflow_dispatch:
+  
 concurrency:
   # prevent concurrent executions of this workflow
   # we need the dev update to complete before promoting 
   group: ${{ github.workflow }}
 
 jobs:
-  update-dev:
+  update-lab:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./scripts
     # only runs against commits to the master branch
     if: github.ref == 'refs/heads/master'
     environment: lab
     steps:
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4  
-        - name: Deploy to lab
-        run: ./gateway_import_export_utils.sh import Petstore ${{ secrets.APIGW_URL }} ${{ secrets.APIGW_USERNAME }} ${{ secrets.APIGW_PASSWORD }}
+      - uses: actions/checkout@v3
+      - uses: jiridj/wm-apigw-actions-register-api@v1
+        with: 
+          apigw-url: ${{ secrets.APIGW_URL }}
+          apigw-username: ${{ secrets.APIGW_USERNAME }}
+          apigw-password: ${{ secrets.APIGW_PASSWORD }}
+          api-spec: swagger.json
+          set-active: true
+          debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
 
   promote-to-staging:
     runs-on: ubuntu-latest
