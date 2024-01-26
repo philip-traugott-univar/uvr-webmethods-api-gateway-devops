@@ -20,7 +20,7 @@ jobs:
     environment: lab
     steps:
       - uses: actions/checkout@v3
-      - uses: jiridj/wm-apigw-actions-register-api@v1
+      - uses: jiridj/wm-apigw-actions-register-api@v1.2.0
         with: 
           apigw-url: ${{ secrets.APIGW_URL }}
           apigw-username: ${{ secrets.APIGW_USERNAME }}
