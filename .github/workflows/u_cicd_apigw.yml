@@ -22,20 +22,20 @@ jobs:
     if: github.ref == 'refs/heads/master'
     environment: lab
     steps:
-      #- uses: actions/checkout@v3
-      #- uses: jiridj/wm-apigw-actions-register-api@v1
+      # - uses: actions/checkout@v3
+      # - uses: jiridj/wm-apigw-actions-register-api@v1
       - name: Check out the repository to the runner
         uses: actions/checkout@v4  
         - name: Run a script
         run: ./gateway_import_export_utils.sh import Petstore ${{ secrets.APIGW_URL }} ${{ secrets.APIGW_USERNAME }} ${{ secrets.APIGW_PASSWORD }}
-        #with: 
-          #apigw-url: ${{ secrets.APIGW_URL }}
-          #apigw-username: ${{ secrets.APIGW_USERNAME }}
-          #apigw-password: ${{ secrets.APIGW_PASSWORD }}
-          #api-spec: swagger.json
-          #api-spec: API.4ea2dcf0-66c5-469b-b822-fe4707c6f899
-          #set-active: true
-          #debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
+        # with: 
+          # apigw-url: ${{ secrets.APIGW_URL }}
+          # apigw-username: ${{ secrets.APIGW_USERNAME }}
+          # apigw-password: ${{ secrets.APIGW_PASSWORD }}
+          # api-spec: swagger.json
+          # api-spec: API.4ea2dcf0-66c5-469b-b822-fe4707c6f899
+          # set-active: true
+          # debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
 
   promote-to-staging:
     runs-on: ubuntu-latest
