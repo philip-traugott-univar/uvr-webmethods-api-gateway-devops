@@ -25,8 +25,6 @@ jobs:
           echo Head branch of pull request is ${{ github.head_ref }}          
           echo Base branch of pull request is ${{ github.base_ref }}
           echo Event ref is ${{ github.event.ref }}
-          echo ${{ secrets.APIGW_URL }}
-          echo ${{ secrets.APIGW_USERNAME }}
           
   update-lab:
     runs-on: ubuntu-latest
@@ -35,6 +33,10 @@ jobs:
     environment: lab
     steps:
       - uses: actions/checkout@v3
+      - name: 'echo environment variables'
+        run: |
+          echo APIGW_URL is ${{ secrets.APIGW_URL }}
+          echo APIGW_USERNAME is ${{ secrets.APIGW_USERNAME }}
       - uses: jiridj/wm-apigw-actions-register-api@v1
         with: 
           apigw-url: ${{ secrets.APIGW_URL }}
