@@ -30,6 +30,12 @@ jobs:
     if: github.ref == 'refs/heads/master'
     environment: lab
     steps:
+      - id: api-info
+        run: |
+          API_NAME=$(jq '.info.title' ./apis/petstore/API/API.4ea2dcf0-66c5-469b-b822-fe4707c6f899/API.4ea2dcf0-66c5-469b-b822-fe4707c6f899 | tr -d '"')
+          API_VERSION=$(jq '.info.version' swagger.json | tr -d '"')
+          echo "::set-output name=api-name::${API_NAME}"
+          echo "::set-output name=api-version::${API_VERSION}"
       - uses: actions/checkout@v3
       - uses: jiridj/wm-apigw-actions-register-api@v1
         with: 
