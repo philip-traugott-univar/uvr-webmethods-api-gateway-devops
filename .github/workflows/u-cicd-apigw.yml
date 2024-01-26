@@ -15,8 +15,8 @@ concurrency:
 jobs:
   update-dev:
     runs-on: ubuntu-latest
-    # only runs against commits to the main branch
-    if: github.ref == 'refs/heads/main'
+    # only runs against commits to the master branch
+    if: github.ref == 'refs/heads/master'
     environment: development
     steps:
       - uses: actions/checkout@v3
