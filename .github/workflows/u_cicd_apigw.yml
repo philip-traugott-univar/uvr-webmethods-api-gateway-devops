@@ -25,7 +25,8 @@ jobs:
           apigw-url: ${{ secrets.APIGW_URL }}
           apigw-username: ${{ secrets.APIGW_USERNAME }}
           apigw-password: ${{ secrets.APIGW_PASSWORD }}
-          api-spec: swagger.json
+          #api-spec: swagger.json
+          api-spec: API.4ea2dcf0-66c5-469b-b822-fe4707c6f899
           set-active: true
           debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
 
