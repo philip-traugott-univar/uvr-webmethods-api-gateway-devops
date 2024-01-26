@@ -37,6 +37,7 @@ jobs:
         run: |
           echo APIGW_URL is ${{ secrets.APIGW_URL }}
           echo APIGW_USERNAME is ${{ secrets.APIGW_USERNAME }}
+          echo APIGATEWAY_SERVER_PORT is ${{ env.APIGATEWAY_SERVER_PORT }}
       - uses: jiridj/wm-apigw-actions-register-api@v1
         with: 
           apigw-url: ${{ secrets.APIGW_URL }}
